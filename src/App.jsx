@@ -1,13 +1,13 @@
 import './App.css'
 import { Dashboard } from './components/Dashboard'
+import {Content} from "./components/Content"
 function App() {
 
   return (
-    <>
-      <div>
+      <div className='flex font-inter '>
         <Dashboard/>
+        <Content/>
       </div>
-    </>
   )
 }
 

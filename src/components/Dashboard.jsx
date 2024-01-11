@@ -4,7 +4,7 @@ import { DataIn } from './DataIn'
 import longsight from "../assets/longsight.svg"
 export const Dashboard = () => {
   return (
-    <div className='bg-[#181818] text-white flex flex-col w-[15.5rem] min-h-[100%] justify-between' >
+    <div className='bg-[#181818] text-white flex flex-col w-[16rem] min-h-[100%] justify-between' >
         <div>
             <img src={LOGO} className='border-y-[1px] border-black max-w-[8rem] py-3 mr-8 ml-5'/>
             <DataIn/>

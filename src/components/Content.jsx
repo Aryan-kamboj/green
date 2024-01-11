@@ -10,11 +10,27 @@ import { BarGraph } from "./core/BarGraph";
 import { TbArrowsDiagonal2 } from "react-icons/tb";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { FaFileDownload } from "react-icons/fa";
-import {data} from "../assets/data";
+import { E_R_by_month } from "../utilityFunctions/dataFilters";
+import { totalEmm } from "../utilityFunctions/dataFilters";
 export const Content = () => {
     const [notificationCount,setNotifications] = useState(1);
+    const [graphData,setData] = useState(E_R_by_month);
+    const [totalEm,setTotalEmm] = useState(totalEmm) ;
+    console.log(graphData);
+    console.log(totalEm);
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    let sumCo2_23 = 0 ;
+    let sumRev_23 = 0;
+    let sumCo2_22 = 0 ;
+    let sumRev_22 = 0;
+    months.map((month)=>{
+        sumCo2_23 = graphData[2023][month].e+sumCo2_23;
+        sumRev_23 = graphData[2023][month].r+sumRev_23;
+        sumCo2_22 = graphData[2022][month].e+sumCo2_22;
+        sumRev_22 = graphData[2022][month].r+sumRev_22;
+    }) 
   return (
-    <div className="w-[100%] font-HelveticaNeue bg-[#02AB6C0A] ">
+    <div className="w-full font-HelveticaNeue bg-[#02AB6C0A] ">
         <div className="flex justify-between text-[16px] font-[400 h-16 px-5">
             <div className="flex items-center space-x-2">
                 <img src={catagory}/>
@@ -54,7 +70,7 @@ export const Content = () => {
                     <div className="border-[#E030213D] bg-[#E030210A] border-[1px] rounded-[0.5rem] w-[14rem]">
                     <div className="px-4 border-l-[#E03021] h-11 flex items-center justify-between my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
                         <div className="text-[15px]">
-                        39699CO₂e
+                        {sumCo2_23}CO₂e
                         </div>
                     <div className="flex text-[11px] text-[rgb(183,61,66)] items-center">7.6%YOY<IoIosArrowRoundUp className="text-xl"/></div>
                     </div>
@@ -65,7 +81,7 @@ export const Content = () => {
                     <div className="border-[#FFC4003D] bg-[#FFC4000A] border-[1px] rounded-[0.5rem]">
                     <div className="px-4 border-l-[#FFC400] h-11 flex items-center justify-between my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
                         <div className="text-[15px]">
-                        136.0
+                        {(sumRev_23/sumCo2_23).toFixed(2)}
                         </div>
                         <div className="flex text-[11px] text-[rgb(183,61,66)] items-center">3.7%YOY<IoIosArrowRoundUp className="text-xl"/></div>
                     </div>
@@ -79,7 +95,7 @@ export const Content = () => {
                     <div className="border-[#3BB85E3D] bg-[#3BB85E0A] border-[1px] rounded-[0.5rem] w-[14rem]">
                     <div className="px-4 border-l-[#3BB85E] h-11 flex items-center justify-between my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
                         <div className="text-[15px]">
-                        39699CO₂e
+                        32% of Scope3
                         </div>
                     </div>
                     </div>
@@ -91,14 +107,14 @@ export const Content = () => {
             </div>
             <div className="ml-6">
                 <div className="mt-24  border-[#EBEBEB] border-[1px] rounded-xl p-5 w-[62.8rem] h-[32.6rem]'">
-                    <BarGraph/>
+                    <BarGraph graphData={graphData}/>
                 </div>
-                <div className=" mt-4 flex space-x-6">
+                <div className=" mt-4 flex space-x-6 mb-4">
                     <div className="flex items-center flex-col justify-between border-[#EBEBEB] border-[1px] rounded-xl w-[28.7rem] pb-4 " >
                         <div className="flex justify-between w-full px-4 py-4"><p className="text-[14px]">Emission by Supplier</p><p className="flex border-[1px] border[#EBEBEB] rounded-xl py-1 px-[0.5rem] space-x-1"><TbArrowsDiagonal2/><HiDotsHorizontal/></p></div>
-                        <PiChart className=""/>
+                        <PiChart totalEm={totalEm}/>
                     </div>
-                    <div className="w-[40rem] border-[1px] border-[#EBEBEB] rounded-t-xl">
+                    <div className="w-[40rem] border-[1px] border-[#EBEBEB] rounded-t-xl ">
                         <div className="flex justify-between mx-4 my-4 ">
                             <span className="flex space-x-1 items-center text-[1rem]">
                                 <span>Supplier-wise</span>
@@ -112,10 +128,26 @@ export const Content = () => {
                             <div className="text-[10px] text-[#0000007A] text-center bg-[#FAFAFA] py-4 border-y-[1px] border-r-[1px] border-[#EBEBEB]">REVENUE/EMISSION RATIO</div>
                             <div className="text-[10px] text-[#0000007A] text-center bg-[#FAFAFA] py-4 border-y-[1px] border-[#EBEBEB]">YOY R/E Change</div>
                         </div>
-                        <table>
-                            {console.log(data)}
-                            <div>Here will be all the emmissions combined for that month of that year </div>
-                        </table>
+                        <div className="text-black overflow-y-scroll h-[20.4rem]">
+                            {months.map((month,i)=>{
+                                return(
+                                    <div className="grid grid-cols-4 " key={i}>
+                                        <div className="flex items-center justify-center py-4 border-b-[1px] border-[#EBEBEB] border-r-[1px]">
+                                            {month}
+                                        </div>
+                                        <div className="flex items-center justify-center py-4 border-b-[1px] border-[#EBEBEB] border-r-[1px]">
+                                            {graphData[2023][month].e}
+                                        </div>
+                                        <div className="flex items-center justify-center py-4 border-b-[1px] border-[#EBEBEB] border-r-[1px]">
+                                            {graphData[2023][month].ratio}
+                                        </div>
+                                        <div className="flex items-center justify-center py-4 border-b-[1px] border-[#EBEBEB] ">
+                                            {graphData[2023][month].yoy}
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
                 

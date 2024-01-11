@@ -24,32 +24,58 @@ ChartJS.register(
   LineController,
   BarController
 );
-export const BarGraph = () => {
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+export const BarGraph = ({graphData}) => {
+  // console.log(graphData);
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const emmissions_2023 = months.map((month)=>{
+    return (graphData[2023][month].e)
+  })
+  const emmissions_2022 = months.map((month)=>{
+    return (graphData[2022][month].e)
+  })
+  const ratio_2022 =  months.map((month)=>{
+    return (graphData[2022][month].ratio)
+  })
+  const ratio_2023 =  months.map((month)=>{
+    return (graphData[2023][month].ratio)
+  })
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const data = {
   labels,
   datasets: [
     {
       type: 'line' ,
-      label: 'Dataset 1',
+      label: 'R/E-2023',
       borderColor: 'rgb(255, 99, 132)',
       borderWidth: 2,
       fill: false,
-      data: [10,20,30,40,50],
+      data: [...ratio_2023],
+      yAxisID: 'myScale'
+    },
+    {
+      type: 'line' ,
+      label: 'R/E-2022',
+      borderColor: '#FFC400',
+      borderWidth: 2,
+      fill: false,
+      data: [...ratio_2022],
+      yAxisID: 'myScale'
     },
     {
       type: 'bar' ,
-      label: 'Dataset 2',
+      label: 'Emmissions-2023',
       backgroundColor: 'rgb(75, 192, 192)',
-      data: [10,20,30,40,50],
+      data: [...emmissions_2023],
       borderColor: 'white',
       borderWidth: 2,
+      // yAxisID:'y-axis-1',
     },
     {
       type: 'bar',
-      label: 'Dataset 3',
+      label: 'Emmissions-2022',
       backgroundColor: 'rgb(53, 162, 235)',
-      data: [10,20,30,40,50],
+      data: [...emmissions_2022],
+      // yAxisID:'y-axis-1',
     },
   ],
   };
@@ -59,49 +85,18 @@ const data = {
                 beginAtZero:true
             },
             y:{
-                beginAtZero:true,
-                position:'left',
+              type:'linear',
+              position:'left',
+              min:1000,
+              max:9000
             },
-            y1:{
-                min:0,
-                max:100,
-                position:"right"
-            }
+            myScale: {
+              type: 'linear',
+              position: 'right',
+              min:20,
+              max:180,
+            },
         }
       }
   return <Chart  type='bar' data={data} options={chartOptions} />;
 }
-
-    
-
-
-// const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-// const data = {
-//   labels,
-//   datasets: [
-//     {
-//       label: 'Dataset 1',
-//       type:"bar",
-//       data: [10,20,30,40],
-//       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-//     },
-//     {
-//       label: 'Dataset 2',
-//       type:"bar",
-//       data: [20,30,40,60],
-//       backgroundColor: 'rgba(53, 162, 235, 0.5)',
-//     },
-//     {
-//       label:"Line Dataset",
-//       type:"line",
-//       borderColor:"rgba(54, 162, 235, 1)",
-//       borderWidth:2,
-//       fill:false,
-//       data:[3,4,5],
-//       yAxisID:"y1"
-//     }
-//   ],
-// };
-//     return <Chart type="bar" data={data} />;
-// };

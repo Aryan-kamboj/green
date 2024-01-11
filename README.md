@@ -12,4 +12,4 @@ after this process is done a link will appear on your terminal screen coppy it a
 
 same web page hosted on vercel -> https://green-ecru.vercel.app/
 
-<img src="https://github.com/Aryan-kamboj/green/blob/main/sample.gif" width="400" height="340" />
+<img src="https://github.com/Aryan-kamboj/green/blob/main/sample.gif" width="600" height="340" />

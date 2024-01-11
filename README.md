@@ -1,8 +1,14 @@
-# React + Vite
+To clone the repo and run on local machine paste the following commands into your TERMINAL - > 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+cd
+mkdir aryanKamboj
+cd aryanKamboj
+git clone https://github.com/Aryan-kamboj/green.git
+cd green
+npm install
+npm run dev
 
-Currently, two official plugins are available:
+after this process is done a link will appear on your terminal screen coppy it an paste it in your browser (local machine's) and you shall be able to see the web page 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+same web page hosted on vercel -> https://green-ecru.vercel.app/
+

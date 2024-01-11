@@ -12,7 +12,7 @@ const data = {
   labels: [...suppliers],
   datasets: [
     {
-      label: '# of Votes',
+      label: 'CO₂e',
       data: [...dataset],
       backgroundColor: [
         'rgba(255, 99, 132, 0.5)',

@@ -128,10 +128,10 @@ export const Content = () => {
                             <div className="text-[10px] text-[#0000007A] text-center bg-[#FAFAFA] py-4 border-y-[1px] border-r-[1px] border-[#EBEBEB]">REVENUE/EMISSION RATIO</div>
                             <div className="text-[10px] text-[#0000007A] text-center bg-[#FAFAFA] py-4 border-y-[1px] border-[#EBEBEB]">YOY R/E Change</div>
                         </div>
-                        <div className="text-black overflow-y-scroll h-[20.4rem]">
+                        <div className="text-black overflow-y-scroll hideScrollBars h-[20.4rem]">
                             {months.map((month,i)=>{
                                 return(
-                                    <div className="grid grid-cols-4 " key={i}>
+                                    <div className="grid grid-cols-4  " key={i}>
                                         <div className="flex items-center justify-center py-4 border-b-[1px] border-[#EBEBEB] border-r-[1px]">
                                             {month}
                                         </div>

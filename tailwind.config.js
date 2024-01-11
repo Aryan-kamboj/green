@@ -8,8 +8,8 @@ export default {
     extend: {
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
-        HelveticaNeue: ['Helvetica Neue', 'sans-serif']
-
+        HelveticaNeue: ['Helvetica Neue', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },

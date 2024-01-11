@@ -5,6 +5,12 @@ import catagory from "../assets/catagory.svg"
 import { useState } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { IoIosArrowRoundUp } from "react-icons/io";
+import { PiChart } from "./core/PiChart";
+import { BarGraph } from "./core/BarGraph";
+import { TbArrowsDiagonal2 } from "react-icons/tb";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { FaFileDownload } from "react-icons/fa";
+import {data} from "../assets/data";
 export const Content = () => {
     const [notificationCount,setNotifications] = useState(1);
   return (
@@ -26,7 +32,7 @@ export const Content = () => {
         <div className="border-[1px] mt-6 border-[#02AB6C] rounded-lg h-8 items-center flex space-x-1 text-xs bg-white absolute right-10">
             <div className="h-[14px]  flex">
                 <span className="absolute mx-4 text-[#0000007A]">Show Timeline:</span>
-                <select className="outline-none text-[#02AB6C] appearance-none w-[240px] text-end pr-10">
+                <select id="select" className="outline-none text-[#02AB6C] appearance-none w-[240px] text-end pr-10">
                     <option>Jan'22 - Dec'23</option>
                     <option>Jan'21 - Dec'22</option>
                     <option>Jan'20 - Dec'21</option>
@@ -38,41 +44,81 @@ export const Content = () => {
                 </div>
             </div>
         </div>
-        <div className="rounded-t-2xl mt-40 bg-white h-[20rem] border-[#EBEBEB] border-[1px]">
-            <div>
-                <div>Current Year Emissions<IoMdInformationCircleOutline/></div>
-                <span>contribution to Scope3</span>
-                <div className="border-[#E030213D] bg-[#E030210A] border-[1px] rounded-[0.5rem]">
-                <div className="border-l-[#E03021] my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
-                    <div>
-                    39699CO₂e
+        <div className="rounded-t-2xl mt-40 bg-white relative border-[#EBEBEB] border-[1px]">
+            <div className="grid grid-cols-4 gap-4 ml-[1.7rem] absolute top-[-4.5rem]">
+                <div className="border-[1px] h-[8.5rem] flex justify-between flex-col bg-white border-[#EBEBEB] rounded-xl p-5">
+                    <div className="flex flex-col">
+                        <div className="text-[14px] text-[#000000CC] font-[400] flex items-center space-x-2"><span>Current Year Emissions</span><IoMdInformationCircleOutline/></div>
+                        <span className="text-[8px] leading-3 italic font-poppins text-[#000000AB]">contribution to Scope3</span>
                     </div>
-                   <div className="flex text-[rgb(183,61,66)] items-center">7.6%YOY<IoIosArrowRoundUp className="text-2xl"/></div>
+                    <div className="border-[#E030213D] bg-[#E030210A] border-[1px] rounded-[0.5rem] w-[14rem]">
+                    <div className="px-4 border-l-[#E03021] h-11 flex items-center justify-between my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
+                        <div className="text-[15px]">
+                        39699CO₂e
+                        </div>
+                    <div className="flex text-[11px] text-[rgb(183,61,66)] items-center">7.6%YOY<IoIosArrowRoundUp className="text-xl"/></div>
+                    </div>
+                    </div>
                 </div>
+                <div className="border-[1px] h-[8.5rem] flex justify-between flex-col bg-white border-[#EBEBEB] rounded-xl p-5">
+                    <div className="text-[14px] text-[#000000CC] font-[400] flex items-center space-x-2"><span>Revenue to emission ratio</span><IoMdInformationCircleOutline/></div>
+                    <div className="border-[#FFC4003D] bg-[#FFC4000A] border-[1px] rounded-[0.5rem]">
+                    <div className="px-4 border-l-[#FFC400] h-11 flex items-center justify-between my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
+                        <div className="text-[15px]">
+                        136.0
+                        </div>
+                        <div className="flex text-[11px] text-[rgb(183,61,66)] items-center">3.7%YOY<IoIosArrowRoundUp className="text-xl"/></div>
+                    </div>
+                    </div>
+                </div>
+                <div className="border-[1px] h-[8.5rem] flex justify-between flex-col bg-white border-[#EBEBEB] rounded-xl p-5">
+                    <div className="flex flex-col">
+                        <div className="text-[14px] text-[#000000CC] font-[400] flex items-center space-x-2"><span>Category-1</span><IoMdInformationCircleOutline/></div>
+                        <span className="text-[8px] leading-3 mt-0 italic font-poppins text-[#000000AB]">contribution to Scope3</span>
+                    </div>
+                    <div className="border-[#3BB85E3D] bg-[#3BB85E0A] border-[1px] rounded-[0.5rem] w-[14rem]">
+                    <div className="px-4 border-l-[#3BB85E] h-11 flex items-center justify-between my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
+                        <div className="text-[15px]">
+                        39699CO₂e
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div className="h-[8.5rem] text-center font-[400] w-[9.7rem] text-white p-5 bg-[#02ab6d] rounded-xl">
+                    <div className="text-sm h-[50%]">Total number of reached suppliers</div>
+                    <div className="text-[46px] h-[50%] items-center justify-center flex">143</div>
                 </div>
             </div>
-            <div>
-                <div>Revenue to emission ratio<IoMdInformationCircleOutline/></div>
-                <div className="border-[#FFC4003D] bg-[#FFC4000A] border-[1px] rounded-[0.5rem]">
-                <div className="border-l-[#FFC400] my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
-                    <div>
-                    39699CO₂e
+            <div className="ml-6">
+                <div className="mt-24  border-[#EBEBEB] border-[1px] rounded-xl p-5 w-[62.8rem] h-[32.6rem]'">
+                    <BarGraph/>
+                </div>
+                <div className=" mt-4 flex space-x-6">
+                    <div className="flex items-center flex-col justify-between border-[#EBEBEB] border-[1px] rounded-xl w-[28.7rem] pb-4 " >
+                        <div className="flex justify-between w-full px-4 py-4"><p className="text-[14px]">Emission by Supplier</p><p className="flex border-[1px] border[#EBEBEB] rounded-xl py-1 px-[0.5rem] space-x-1"><TbArrowsDiagonal2/><HiDotsHorizontal/></p></div>
+                        <PiChart className=""/>
                     </div>
-                   <div className="flex text-[rgb(183,61,66)] items-center">7.6%YOY<IoIosArrowRoundUp className="text-2xl"/></div>
-                </div>
-                </div>
-            </div>
-            <div>
-                <div>Category-1<IoMdInformationCircleOutline/></div>
-                <span>contribution to Scope3</span>
-                <div className="border-[#3BB85E3D] bg-[#3BB85E0A] border-[1px] rounded-[0.5rem]">
-                <div className="border-l-[#3BB85E] my-[-1px] ml-[-1px] border-l-[6px] rounded-[0.5rem] box-border">
-                    <div>
-                    39699CO₂e
+                    <div className="w-[40rem] border-[1px] border-[#EBEBEB] rounded-t-xl">
+                        <div className="flex justify-between mx-4 my-4 ">
+                            <span className="flex space-x-1 items-center text-[1rem]">
+                                <span>Supplier-wise</span>
+                                <IoMdInformationCircleOutline/>
+                            </span>
+                            <button className="border-[1px] h-7 rounded-lg flex items-center space-x-2 px-3 border-[#02AB6C]"><FaFileDownload className="text-[#02AB6C]"/><span className="text-[#02AB6C29]">|</span><span className="text-[11px] text-[#000000D6]">Download</span></button>
+                        </div>
+                        <div className="grid grid-cols-4">
+                            <div className="text-[10px] text-[#0000007A] text-center bg-[#FAFAFA] py-4 border-y-[1px] border-r-[1px] border-[#EBEBEB]">MONTH</div>
+                            <div className="text-[10px] text-[#0000007A] text-center bg-[#FAFAFA] py-4 border-y-[1px] border-r-[1px] border-[#EBEBEB]">EMISSIONS(IN CO2E)</div>
+                            <div className="text-[10px] text-[#0000007A] text-center bg-[#FAFAFA] py-4 border-y-[1px] border-r-[1px] border-[#EBEBEB]">REVENUE/EMISSION RATIO</div>
+                            <div className="text-[10px] text-[#0000007A] text-center bg-[#FAFAFA] py-4 border-y-[1px] border-[#EBEBEB]">YOY R/E Change</div>
+                        </div>
+                        <table>
+                            {console.log(data)}
+                            <div>Here will be all the emmissions combined for that month of that year </div>
+                        </table>
                     </div>
-                   <div className="flex text-[rgb(183,61,66)] items-center">7.6%YOY<IoIosArrowRoundUp className="text-2xl"/></div>
                 </div>
-                </div>
+                
             </div>
         </div>
     </div>

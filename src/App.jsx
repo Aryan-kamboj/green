@@ -4,7 +4,7 @@ import {Content} from "./components/Content"
 function App() {
 
   return (
-      <div className='flex font-inter '>
+      <div className='flex font-inter h-fit'>
         <Dashboard/>
         <Content/>
       </div>
